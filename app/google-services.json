@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "456818477839",
+    "firebase_url": "https://meerkatmusic-146bb.firebaseio.com",
+    "project_id": "meerkatmusic-146bb",
+    "storage_bucket": "meerkatmusic-146bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456818477839:android:91362d5c3fb766e9",
+        "android_client_info": {
+          "package_name": "com.jahanwalsh.meerkat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456818477839-i1npvo3hmtam0vbahdlt8dsjlr01kug2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu-0DOKsj5XUSYNU6432jzvRyHSUzhu24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
