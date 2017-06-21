@@ -1,10 +1,9 @@
-package ui;
 
+package com.jahanwalsh.meerkat;
 import android.os.Bundle;
 import com.jahanwalsh.meerkat.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +49,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -109,6 +109,8 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     @Override
     public void onLoggedOut() {
+//        TODO figure how to log out
+
         Log.d("MainActivity", "User logged out");
     }
 
