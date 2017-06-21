@@ -22,7 +22,6 @@
 
         <activity
             android:name="com.spotify.sdk.android.authentication.WebAuthResultActivity">
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -43,7 +42,7 @@
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity">
     </activity>
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
 
     </application>
 </manifest>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,15 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/no_metadata"/>
+        android:text="@string/no_metadata" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:focusable="true"
         android:onClick="onLoginButtonClicked"
-        android:text="@string/login_button_label"/>
+        android:text="@string/login_button_label" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onSkipToPreviousButtonClicked"
-            android:text="@string/skip_prev_button_label"/>
+            android:text="@string/skip_prev_button_label" />
 
         <Button
             android:id="@+id/skip_next_button"
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onSkipToNextButtonClicked"
-            android:text="@string/skip_next_button_label"/>
+            android:text="@string/skip_next_button_label" />
 
     </LinearLayout>
 
@@ -86,19 +87,26 @@
         android:onClick="onQueueSongButtonClicked"
         android:text="@string/queue_button_label"/>
 
-    <Button
-        android:id="@+id/toggle_shuffle_button"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <Button
+        android:id="@+id/toggle_shuffle_button"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:onClick="onToggleShuffleButtonClicked"
-        android:text="@string/toggle_shuffle_button_toggle"/>
+        android:text="@string/toggle_shuffle_button_toggle" />
 
-    <Button
+        <Button
         android:id="@+id/toggle_repeat_button"
-        android:layout_width="match_parent"
+        android:layout_width="193dp"
         android:layout_height="wrap_content"
         android:onClick="onToggleRepeatButtonClicked"
-        android:text="@string/toggle_repeat_button_label_toggle"/>
+        android:text="@string/toggle_repeat_button_label_toggle" />
+
+        </LinearLayout>
 
 
     <LinearLayout
@@ -126,49 +134,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/low_bitrate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:width="0dp"
-            android:onClick="onLowBitrateButtonPressed"
-            android:text="@string/low_bitrate_button_label"/>
-
-        <Button
-            android:id="@+id/normal_bitrate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:width="0dp"
-            android:onClick="onNormalBitrateButtonPressed"
-            android:text="@string/normal_bitrate_button_label"/>
-
-        <Button
-            android:id="@+id/high_bitrate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:width="0dp"
-            android:onClick="onHighBitrateButtonPressed"
-            android:text="@string/high_bitrate_button_label"/>
 
         <Button
             android:id="@+id/play_mono_track_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onPlayButtonClicked"
-            android:text="@string/play_mono_track_button_label"/>
+            android:text="@string/play_mono_track_button_label" />
 
-        <Button
-            android:id="@+id/play_48khz_track_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onPlayButtonClicked"
-            android:text="@string/play_48khz_track_button_label"/>
     </LinearLayout>
 
 

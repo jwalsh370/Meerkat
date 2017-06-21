@@ -7,11 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -42,24 +40,18 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     private static final String CLIENT_ID = "939c554123ba49ee9b14bb76bc59012a";
     private static final String REDIRECT_URI = "http://meerkatmusic.com/callback";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_SONG_URI = "spotify:track:6KywfgRqvgvfJc3JRwaZdZ";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_SONG_MONO_URI = "spotify:track:1FqY3uJypma5wkYw66QOUi";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_SONG_48kHz_URI = "spotify:track:3wxTNS3aqb9RbBLZgJdZgH";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_PLAYLIST_URI = "spotify:user:spotify:playlist:2yLXxKhhziG2xzy7eyD4TD";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_ALBUM_URI = "spotify:album:2lYmxilk8cXJlxxXmns1IU";
-    @SuppressWarnings("SpellCheckingInspection")
     private static final String TEST_QUEUE_SONG_URI = "spotify:track:5EEOjaJyWvfMglmEwf9bG3";
 
     //CONSTANTS
+
     private Player mPlayer;
     private PlaybackState mCurrentPlaybackState;
     private BroadcastReceiver mNetworkStateReceiver;
-    private Button mFindPlaylistButton;
     private TextView mStatusText;
 
     private TextView mMetadataText;
@@ -72,14 +64,10 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     private static final int[] REQUIRES_INITIALIZED_STATE = {
             R.id.play_track_button,
             R.id.play_mono_track_button,
-            R.id.play_48khz_track_button,
             R.id.play_album_button,
             R.id.play_playlist_button,
             R.id.pause_button,
             R.id.seek_button,
-            R.id.low_bitrate_button,
-            R.id.normal_bitrate_button,
-            R.id.high_bitrate_button,
             R.id.seek_edittext,
     };
 
@@ -132,8 +120,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     protected void onResume() {
         super.onResume();
 
-        // Set up the broadcast receiver for network events. Note that we also unregister
-        // this receiver again in onPause().
+
         mNetworkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -204,11 +191,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         Log.d("Got authtoken", "Got");
         if (mPlayer == null) {
             Config playerConfig = new Config(getApplicationContext(), authResponse.getAccessToken(), CLIENT_ID);
-            // Since the Player is a static singleton owned by the Spotify class, we pass "this" as
-            // the second argument in order to refcount it properly. Note that the method
-            // Spotify.destroyPlayer() also takes an Object argument, which must be the same as the
-            // one passed in here. If you pass different instances to Spotify.getPlayer() and
-            // Spotify.destroyPlayer(), that will definitely result in resource leaks.
+
             mPlayer = Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
                 @Override
                 public void onInitialized(SpotifyPlayer player) {
@@ -259,21 +242,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
             Picasso.with(this)
                     .load(mMetadata.currentTrack.albumCoverWebUrl)
-                    .transform(new Transformation() {
-
-                       @Override
-                        public Bitmap transform(Bitmap source) {
-                            final Bitmap copy = source.copy(source.getConfig(), true);
-                            source.recycle();
-                            final Canvas canvas = new Canvas(copy);
-                            canvas.drawColor(0xbb000000);
-                            return copy;
-                        }
-
-                        @Override
-                        public String key() {
-                            return "darken";
-                        }
+                    .transform(new MyTransform() {
                     })
                     .into(coverArtView);
         } else {
@@ -307,9 +276,6 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
                 break;
             case R.id.play_mono_track_button:
                 uri = TEST_SONG_MONO_URI;
-                break;
-            case R.id.play_48khz_track_button:
-                uri = TEST_SONG_48kHz_URI;
                 break;
             case R.id.play_playlist_button:
                 uri = TEST_PLAYLIST_URI;
