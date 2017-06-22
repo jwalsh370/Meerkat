@@ -13,6 +13,7 @@
 
     <Button
         android:id="@+id/login_button"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:focusable="true"
@@ -26,36 +27,40 @@
 
         <Button
             android:id="@+id/play_track_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onPlayButtonClicked"
-            android:text="@string/play_track_button_label"/>
+            android:text="@string/play_track_button_label" />
 
         <Button
             android:id="@+id/play_album_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onPlayButtonClicked"
-            android:text="@string/play_album_button_label"/>
+            android:text="@string/play_album_button_label" />
 
         <Button
             android:id="@+id/play_playlist_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onPlayButtonClicked"
-            android:text="@string/play_playlist_button_label"/>
+            android:text="@string/play_playlist_button_label" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/pause_button"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onPauseButtonClicked"
-        android:text="@string/pause_button_label_toggle"/>
+        android:text="@string/pause_button_label_toggle" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,6 +69,7 @@
 
         <Button
             android:id="@+id/skip_prev_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,6 +78,7 @@
 
         <Button
             android:id="@+id/skip_next_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -82,29 +89,32 @@
 
     <Button
         android:id="@+id/queue_song_button"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onQueueSongButtonClicked"
-        android:text="@string/queue_button_label"/>
+        android:text="@string/queue_button_label" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-      <Button
-        android:id="@+id/toggle_shuffle_button"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:onClick="onToggleShuffleButtonClicked"
-        android:text="@string/toggle_shuffle_button_toggle" />
+        <Button
+            android:id="@+id/toggle_shuffle_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:onClick="onToggleShuffleButtonClicked"
+            android:text="@string/toggle_shuffle_button_toggle" />
 
         <Button
-        android:id="@+id/toggle_repeat_button"
-        android:layout_width="193dp"
-        android:layout_height="wrap_content"
-        android:onClick="onToggleRepeatButtonClicked"
-        android:text="@string/toggle_repeat_button_label_toggle" />
+            android:id="@+id/toggle_repeat_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="193dp"
+            android:layout_height="wrap_content"
+            android:onClick="onToggleRepeatButtonClicked"
+            android:text="@string/toggle_repeat_button_label_toggle" />
 
         </LinearLayout>
 
@@ -116,6 +126,7 @@
 
         <Button
             android:id="@+id/seek_button"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onSeekButtonClicked"
@@ -123,11 +134,12 @@
 
         <EditText
             android:id="@+id/seek_edittext"
+            style="@android:style/Widget.DeviceDefault.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
-            android:text="0"/>
+            android:text="0" />
 
     </LinearLayout>
 
@@ -138,6 +150,7 @@
 
         <Button
             android:id="@+id/play_mono_track_button"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onPlayButtonClicked"

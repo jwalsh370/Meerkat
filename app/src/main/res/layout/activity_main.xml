@@ -35,19 +35,10 @@
             <ImageView
                 android:id="@+id/cover_art"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:scaleType="centerCrop"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="97dp" />
-
-            <android.support.constraint.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="20dp"
-                tools:layout_editor_absoluteY="109dp"
-                tools:layout_editor_absoluteX="8dp" />
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="121dp" />
 
 
         </android.support.constraint.ConstraintLayout>
@@ -70,10 +61,11 @@
     <ScrollView
         android:id="@id/status_text_container"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="190dp"
         android:layout_marginStart="200dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -82,11 +74,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintTop_creator="1">
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginRight="8dp">
 
         <TextView
             android:id="@+id/status_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:typeface="monospace" />
