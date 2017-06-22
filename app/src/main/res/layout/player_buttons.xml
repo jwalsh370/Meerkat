@@ -103,7 +103,7 @@
         <Button
             android:id="@+id/toggle_shuffle_button"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="190dp"
+            android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:onClick="onToggleShuffleButtonClicked"
             android:text="@string/toggle_shuffle_button_toggle" />
@@ -111,12 +111,20 @@
         <Button
             android:id="@+id/toggle_repeat_button"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="193dp"
+            android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:onClick="onToggleRepeatButtonClicked"
             android:text="@string/toggle_repeat_button_label_toggle" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/toggle_profile"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:onClick="onToggleProfileButtonClicked"
+            android:text="Toggle Profile" />
+
+    </LinearLayout>
 
 
     <LinearLayout

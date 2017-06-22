@@ -34,11 +34,12 @@
 
             <ImageView
                 android:id="@+id/cover_art"
-                android:layout_width="wrap_content"
-                android:layout_height="180dp"
+                android:layout_width="233dp"
+                android:layout_height="260dp"
                 android:scaleType="centerCrop"
-                tools:layout_editor_absoluteX="40dp"
-                tools:layout_editor_absoluteY="121dp" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="35dp"
+                android:layout_marginLeft="0dp" />
 
 
         </android.support.constraint.ConstraintLayout>
@@ -60,29 +61,29 @@
 
     <ScrollView
         android:id="@id/status_text_container"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_width="150dp"
+        android:layout_height="260dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="190dp"
-        android:layout_marginStart="200dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:fillViewport="false"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginRight="8dp">
+        android:layout_marginEnd="7dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="7dp">
 
         <TextView
             android:id="@+id/status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:typeface="monospace" />
+            android:textColor="@color/colorAccent"
+            android:visibility="visible" />
 
 
     </ScrollView>

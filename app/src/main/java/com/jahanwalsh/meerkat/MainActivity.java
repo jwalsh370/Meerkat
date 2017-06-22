@@ -44,7 +44,10 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     private static final String TEST_SONG_URI = "spotify:track:2PpruBYCo4H7WOBJ7Q2EwM";
     private static final String TEST_PLAYLIST_URI = "spotify:user:1216740004:playlist:6wzgIxl33B2pHsKNqakxP9";
     private static final String TEST_ALBUM_URI = "spotify:album:12DmuRtZNTx84ELHKD3VGL";
-    private static final String TEST_QUEUE_SONG_URI = "spotify:track:1ETZhP9orTkDclKEyt0xqm";
+    private static final String TEST_QUEUE_SONG_URI = "spotify:track:5EEOjaJyWvfMglmEwf9bG3";
+    private static final String TEST_PROFILE_URI = "spotify:user:1216740004";
+
+
 
     //CONSTANTS
 
@@ -69,6 +72,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     private Button mQueueButton;
     private Button mShuffleButton;
     private Button mRepeatButton;
+    private Button mProfileButton;
 
 
     private static final int[] REQUIRES_INITIALIZED_STATE = {
@@ -78,6 +82,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
             R.id.pause_button,
             R.id.seek_button,
             R.id.seek_edittext,
+            R.id.toggle_profile,
     };
 
     private static final int[] REQUIRES_PLAYING_STATE = {
@@ -86,18 +91,19 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
             R.id.queue_song_button,
             R.id.toggle_shuffle_button,
             R.id.toggle_repeat_button,
+
     };
     public static final String TAG = "SpotifySdk";
 
     private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
         @Override
-        public void onSuccess() {
-            Log.d("OK!", "WORKS");
+        public void onSuccess(){
+        logStatus("OK!");
         }
 
         @Override
         public void onError(Error error) {
-            Log.d("ERROR:", "error");
+            logStatus("ERROR:" + error);
         }
     };
 
@@ -131,6 +137,8 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         mQueueButton = (Button) findViewById( R.id.queue_song_button);
         mShuffleButton = (Button) findViewById( R.id.toggle_shuffle_button);
         mRepeatButton = (Button) findViewById( R.id.toggle_repeat_button);
+        mProfileButton = (Button) findViewById(R.id.toggle_profile);
+
 
 //FONTS
         Typeface bread = Typeface.createFromAsset(getAssets(), "fonts/bread.ttf");
@@ -147,11 +155,12 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         mQueueButton.setTypeface(bread);
         mShuffleButton.setTypeface(bread);
         mRepeatButton.setTypeface(bread);
+        mProfileButton.setTypeface(bread);
 
 
 
         updateView();
-        Log.d("Ready", "READY");
+        logStatus("Ready");
     }
 
     @Override
@@ -164,7 +173,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
             public void onReceive(Context context, Intent intent) {
                 if (mPlayer != null) {
                     Connectivity connectivity = getNetworkConnectivity(getBaseContext());
-                    Log.d("Network state changed: ", connectivity.toString());
+                    logStatus("Network state changed: " + connectivity.toString());
                     mPlayer.setConnectivityStatus(mOperationCallback, connectivity);
                 }
             }
@@ -275,8 +284,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
         final ImageView coverArtView = (ImageView) findViewById(R.id.cover_art);
         if (mMetadata != null && mMetadata.currentTrack != null) {
-            final String durationStr = String.format(" (%dms)", mMetadata.currentTrack.durationMs);
-            mMetadataText.setText(mMetadata.contextName + "\n" + mMetadata.currentTrack.name + " - " + mMetadata.currentTrack.artistName + durationStr);
+            mStatusText.setText(mMetadata.contextName + "\n" + "\n" + "Track: " + mMetadata.currentTrack.name + " \n "  + "\n" + "Artist: " + mMetadata.currentTrack.artistName);
 
             Picasso.with(this)
                     .load(mMetadata.currentTrack.albumCoverWebUrl)
@@ -284,7 +292,9 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
                     })
                     .into(coverArtView);
         } else {
-            mMetadataText.setText("<nothing is playing>");
+
+            mMetadataText.setText("");
+            mStatusText.setText("<nothing is playing>");
             coverArtView.setBackground(null);
         }
 
@@ -297,8 +307,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     public void onLoginButtonClicked(View view) {
         if (!isLoggedIn()) {
-            Log.d("Logging in", "LOGGED");
-
+            logStatus("Logging in");
             openLoginWindow();
         } else {
             mPlayer.logout();
@@ -318,11 +327,14 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
             case R.id.play_album_button:
                 uri = TEST_ALBUM_URI;
                 break;
+            case R.id.toggle_profile:
+                uri = TEST_PROFILE_URI;
+                break;
             default:
                 throw new IllegalArgumentException("View ID does not have an associated URI to play");
         }
 
-        Log.d("Starting playback for ", uri);
+        logStatus("Starting playback for " + uri);
         mPlayer.playUri(mOperationCallback, uri, 0, 0);
     }
 
@@ -346,6 +358,11 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         mPlayer.queue(mOperationCallback, TEST_QUEUE_SONG_URI);
         Toast toast = Toast.makeText(this, R.string.song_queued_toast, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    public void onToggleProfileButtonClicked(View view){
+        mPlayer.playUri(mOperationCallback,"spotify:user:1216740004",0,0 );
+
     }
 
     public void onToggleShuffleButtonClicked(View view) {
@@ -372,39 +389,40 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     @Override
     public void onLoggedIn() {
-        Log.d("MainActivity", "User logged in");
+        logStatus("Login complete");
 
-        mPlayer.playUri(null, "spotify:track:2TpxZ7JUBn3uw46aR7qd6V", 0, 0);
+        mPlayer.playUri(null, "spotify:track:1ETZhP9orTkDclKEyt0xqm", 0, 0);
     }
 
     @Override
     public void onLoggedOut() {
 
-        Log.d("MainActivity", "User logged out");
+        logStatus("Logout complete");
     }
 
     @Override
     public void onLoginFailed(Error error) {
-        Log.d("MainActivity", "Login failed");
+
+        logStatus("Login error "+ error);
     }
 
     @Override
     public void onTemporaryError() {
-        Log.d("MainActivity", "Temporary error occurred");
+
+        logStatus("Temporary error occurred");
     }
 
     @Override
     public void onConnectionMessage(String message) {
-        Log.d("MainActivity", "Received connection message: " + message);
+        logStatus("Incoming connection message: " + message);
     }
 
 
     private void logStatus(String status) {
-        Log.i(TAG, status);
         if (!TextUtils.isEmpty(mStatusText.getText())) {
             mStatusText.append("\n");
         }
-        mStatusText.append(">>>" + status);
+//        mStatusText.append(">>>" + status);
         mStatusTextScrollView.post(new Runnable() {
             @Override
             public void run() {
@@ -426,6 +444,8 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     public void onPlaybackEvent(PlayerEvent playerEvent) {
         mCurrentPlaybackState = mPlayer.getPlaybackState();
         mMetadata = mPlayer.getMetadata();
+        logStatus("Event: " + playerEvent);
+
         Log.i(TAG, "Player state: " + mCurrentPlaybackState);
         Log.i(TAG, "Metadata: " + mMetadata);
         updateView();
@@ -433,7 +453,7 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     @Override
     public void onPlaybackError(Error error) {
-        Log.d("MainActivity", "Playback error received: " + error.name());
+        logStatus("Playback error received: " + error.name());
         switch (error) {
             default:
                 break;

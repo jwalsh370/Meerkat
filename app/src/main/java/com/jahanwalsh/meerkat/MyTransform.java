@@ -16,7 +16,7 @@ public class MyTransform implements Transformation {
         final Bitmap copy = source.copy(source.getConfig(), true);
         source.recycle();
         final Canvas canvas = new Canvas(copy);
-        canvas.drawColor(0xbb000000);
+        canvas.drawColor(0);
         return copy;
     }
 
