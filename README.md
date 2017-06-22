@@ -6,6 +6,7 @@
 
 ## Description
 An Android Music Streaming App (using Android Studio, Gradle, Git,and Atom) that allows users to create collaborative playlist.
+![Alt text](/app/src/main/res/drawable/screenshot.jpg?raw=true)
 
 ## Setup/Installation Requirements
 
