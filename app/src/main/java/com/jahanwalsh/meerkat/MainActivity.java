@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -40,11 +41,10 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
 
     private static final String CLIENT_ID = "939c554123ba49ee9b14bb76bc59012a";
     private static final String REDIRECT_URI = "http://meerkatmusic.com/callback";
-    private static final String TEST_SONG_URI = "spotify:track:6KywfgRqvgvfJc3JRwaZdZ";
-    private static final String TEST_SONG_MONO_URI = "spotify:track:1FqY3uJypma5wkYw66QOUi";
-    private static final String TEST_PLAYLIST_URI = "spotify:user:spotify:playlist:2yLXxKhhziG2xzy7eyD4TD";
-    private static final String TEST_ALBUM_URI = "spotify:album:2lYmxilk8cXJlxxXmns1IU";
-    private static final String TEST_QUEUE_SONG_URI = "spotify:track:5EEOjaJyWvfMglmEwf9bG3";
+    private static final String TEST_SONG_URI = "spotify:track:2PpruBYCo4H7WOBJ7Q2EwM";
+    private static final String TEST_PLAYLIST_URI = "spotify:user:1216740004:playlist:6wzgIxl33B2pHsKNqakxP9";
+    private static final String TEST_ALBUM_URI = "spotify:album:12DmuRtZNTx84ELHKD3VGL";
+    private static final String TEST_QUEUE_SONG_URI = "spotify:track:1ETZhP9orTkDclKEyt0xqm";
 
     //CONSTANTS
 
@@ -59,10 +59,20 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
     private ScrollView mStatusTextScrollView;
     private Metadata mMetadata;
     private static final int REQUEST_CODE = 1991;
+    private Button mPlayButton;
+    private Button mAlbumButton;
+    private Button mPlaylistButton;
+    private Button mPauseButton;
+    private Button mSeekButton;
+    private Button mSkipNextButton;
+    private Button mSkipPrevButton;
+    private Button mQueueButton;
+    private Button mShuffleButton;
+    private Button mRepeatButton;
+
 
     private static final int[] REQUIRES_INITIALIZED_STATE = {
             R.id.play_track_button,
-            R.id.play_mono_track_button,
             R.id.play_album_button,
             R.id.play_playlist_button,
             R.id.pause_button,
@@ -110,6 +120,35 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         mMetadataText = (TextView) findViewById(R.id.metadata);
         mSeekEditText = (EditText) findViewById(R.id.seek_edittext);
         mStatusTextScrollView = (ScrollView) findViewById(R.id.status_text_container);
+
+        mPlayButton = (Button) findViewById( R.id.play_track_button);
+        mAlbumButton = (Button) findViewById( R.id.play_album_button);
+        mPlaylistButton = (Button) findViewById( R.id.play_playlist_button);
+        mPauseButton = (Button) findViewById(R.id.pause_button);
+        mSeekButton = (Button) findViewById( R.id.seek_button);
+        mSkipNextButton = (Button) findViewById(  R.id.skip_next_button);
+        mSkipPrevButton = (Button) findViewById( R.id.skip_prev_button);
+        mQueueButton = (Button) findViewById( R.id.queue_song_button);
+        mShuffleButton = (Button) findViewById( R.id.toggle_shuffle_button);
+        mRepeatButton = (Button) findViewById( R.id.toggle_repeat_button);
+
+//FONTS
+        Typeface bread = Typeface.createFromAsset(getAssets(), "fonts/bread.ttf");
+        mStatusText.setTypeface(bread);
+        mMetadataText.setTypeface(bread);
+        mSeekEditText.setTypeface(bread);
+        mPlayButton.setTypeface(bread);
+        mAlbumButton.setTypeface(bread);
+        mPlaylistButton.setTypeface(bread);
+        mPauseButton.setTypeface(bread);
+        mSeekButton.setTypeface(bread);
+        mSkipNextButton.setTypeface(bread);
+        mSkipPrevButton.setTypeface(bread);
+        mQueueButton.setTypeface(bread);
+        mShuffleButton.setTypeface(bread);
+        mRepeatButton.setTypeface(bread);
+
+
 
         updateView();
         Log.d("Ready", "READY");
@@ -273,9 +312,6 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
             case R.id.play_track_button:
                 uri = TEST_SONG_URI;
                 break;
-            case R.id.play_mono_track_button:
-                uri = TEST_SONG_MONO_URI;
-                break;
             case R.id.play_playlist_button:
                 uri = TEST_PLAYLIST_URI;
                 break;
@@ -325,17 +361,6 @@ public class MainActivity extends Activity implements SpotifyPlayer.Notification
         mPlayer.seekToPosition(mOperationCallback, seek);
     }
 
-    public void onLowBitrateButtonPressed(View view) {
-        mPlayer.setPlaybackBitrate(mOperationCallback, PlaybackBitrate.BITRATE_LOW);
-    }
-
-    public void onNormalBitrateButtonPressed(View view) {
-        mPlayer.setPlaybackBitrate(mOperationCallback, PlaybackBitrate.BITRATE_NORMAL);
-    }
-
-    public void onHighBitrateButtonPressed(View view) {
-        mPlayer.setPlaybackBitrate(mOperationCallback, PlaybackBitrate.BITRATE_HIGH);
-    }
 
 
 //CALLBACK METHODS
