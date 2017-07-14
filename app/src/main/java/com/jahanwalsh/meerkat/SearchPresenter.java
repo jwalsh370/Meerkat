@@ -15,7 +15,6 @@ import java.util.List;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.models.Track;
 
-
 public class SearchPresenter implements Search.ActionListener {
 
     private static final String TAG = SearchPresenter.class.getSimpleName();

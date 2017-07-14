@@ -10,40 +10,21 @@
         android:label="@string/app_name"
         android:icon="@drawable/group"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MainActivity">
 
         </activity>
 
-        <activity
-            android:name="com.spotify.sdk.android.authentication.WebAuthResultActivity">
-
+        <activity android:name=".LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="callback"
-                    android:scheme="webSchema"/>
-
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
 
-
-        <!-- Needed for LoginActivity to work -->
         <activity
-            android:name="com.spotify.sdk.android.authentication.LoginActivity">
-    </activity>
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
-
+        <service android:name=".PlayerService"/>
     </application>
 </manifest>

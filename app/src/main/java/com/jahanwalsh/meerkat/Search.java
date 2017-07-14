@@ -1,8 +1,10 @@
 package com.jahanwalsh.meerkat;
 
-import com.wrapper.spotify.models.Track;
+
 
 import java.util.List;
+
+import kaaes.spotify.webapi.android.models.Track;
 
 /**
  * Created by jahanwalsh on 7/14/17.
